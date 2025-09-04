@@ -22,7 +22,7 @@ function WebVitalsDisplay() {
 		<div className="App-metrics">
 			<h3>Web Vitals</h3>
 			{Object.keys(metrics).length === 0 ? (
-				<p>No web vitals data yet.</p>
+				<p>LOADING...</p>
 			) : (
 				<ul>
 					{Object.entries(metrics).map(([name, value]) => (
