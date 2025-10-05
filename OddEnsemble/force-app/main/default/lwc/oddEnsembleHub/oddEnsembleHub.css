@@ -1,0 +1,156 @@
+/*
+    LWC Stylesheet for OddEnsembleHub
+    Applies responsive design and styling for the form and the list display.
+*/
+
+:host {
+    display: block;
+    font-family: 'Inter', sans-serif;
+}
+
+/* --- Container and General Layout --- */
+
+.hub-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 1rem;
+    background-color: #f7f9fb; /* Light Salesforce background */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+    margin-bottom: 20px;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.card-header h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #004d9c; /* Salesforce Blue */
+}
+
+/* --- Submission Form Section --- */
+
+.form-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.form-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #4a4a4a;
+}
+
+.submit-button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    background-color: #0070d2; /* Standard Salesforce primary button */
+    border: none;
+}
+
+/* --- Ensemble List Section --- */
+
+.list-header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2e2d2d;
+    margin-bottom: 15px;
+    padding-top: 10px;
+    border-top: 1px dashed #c0c0c0;
+}
+
+.ensemble-list {
+    display: grid;
+    gap: 15px;
+}
+
+.ensemble-item {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-left: 5px solid #0070d2; /* Accent border */
+    padding: 15px;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.ensemble-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.ensemble-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #004d9c;
+    margin-bottom: 5px;
+    word-break: break-word;
+}
+
+.instruments-detail {
+    font-size: 0.95rem;
+    color: #5d5d5d;
+    margin-bottom: 10px;
+}
+
+/* --- Status Badge Styling --- */
+
+.status-badge {
+    align-self: flex-start; /* Keeps the badge tight to the content */
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-pending {
+    background-color: #ffb75d; /* Warning/Pending orange */
+    color: #a05000;
+}
+
+.status-approved {
+    background-color: #4CAF50; /* Success/Approved green */
+    color: white;
+}
+
+/* --- Responsive Adjustments --- */
+
+@media (max-width: 600px) {
+    .hub-container {
+        margin: 10px;
+        padding: 0.8rem;
+    }
+    .card-header h2 {
+        font-size: 1.5rem;
+    }
+    .ensemble-item {
+        padding: 12px;
+    }
+}
+
+.form-rules-note {
+    color: #5D5D5D; /* Dark grey for clarity */
+    font-weight: 500;
+    line-height: 1.3;
+    padding: 5px 0 0;
+}
+.error-message-text {
+    /* Ensures the error text is visible against the red theme_error background */
+    color: white; 
+    font-weight: 600;
+}

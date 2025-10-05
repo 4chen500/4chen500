@@ -1,0 +1,12 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true
+    }
+  ],
+  "namespace": "",
+  "sfdcApiVersion": "60.0",
+  "sourceApiVersion": "60.0"
+}
+

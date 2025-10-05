@@ -1,0 +1,106 @@
+<template>
+    <div class="hub-container slds-p-around_medium">
+        <div class="slds-grid slds-wrap">
+            
+            <!-- Submission Form Section (30% width on desktop, full width on mobile) -->
+            <div class="slds-col slds-size_12-of-12 slds-large-size_4-of-12 slds-p-around_small">
+                <div class="slds-card form-card">
+                    <header class="slds-card__header card-header">
+                        <h2 class="slds-text-heading_medium slds-var-m-bottom_small">Submit a New Idea</h2>
+                        <p class="slds-text-body_small">Share your wackiest combination with the community!</p>
+                        
+                        <!-- NEW: Informational Rules (Admin Approval & Rate Limit) -->
+                        <p class="slds-text-body_x-small slds-m-top_x-small form-rules-note">
+                            **Rules:** Your idea requires **admin approval** to appear on the list. Submission limit is **5 ideas per hour** (per user session).
+                        </p>
+                        
+                    </header>
+                    <div class="slds-card__body slds-card__body_inner">
+
+                        <lightning-spinner if:true={isSubmitting} alternative-text="Submitting" size="small"></lightning-spinner>
+
+                        <!-- NEW: Persistent Error Message Display -->
+                        <template if:true={submissionError}>
+                            <div class="slds-notify slds-notify_alert slds-theme_error slds-m-bottom_medium" role="alert">
+                                <span class="slds-assistive-text">Error</span>
+                                <div class="slds-notify__content">
+                                    <h2 class="slds-text-heading_small">{submissionError}</h2>
+                                </div>
+                            </div>
+                        </template>
+
+                        <lightning-input
+                            label="Ensemble Name"
+                            value={ensembleName}
+                            onchange={handleNameChange}
+                            required
+                            class="slds-m-bottom_x-small"
+                        ></lightning-input>
+
+                        <lightning-textarea
+                            label="Instrument Combination"
+                            value={instruments}
+                            onchange={handleInstrumentsChange}
+                            required
+                            placeholder="e.g., Bagpipes, Electric Guitar, and Oboe"
+                            class="slds-m-bottom_medium"
+                        ></lightning-textarea>
+
+                        <!-- CRITICAL FIX: Ensure button is here and linked to the handler -->
+                        <div class="slds-align_absolute-center slds-m-top_large">
+                            <lightning-button
+                                label="Submit Idea"
+                                variant="brand"
+                                onclick={handleSubmit}
+                                disabled={isSubmitting}
+                            ></lightning-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ensemble List Section (70% width on desktop, full width on mobile) -->
+            <div class="slds-col slds-size_12-of-12 slds-large-size_8-of-12 slds-p-around_small">
+                <div class="slds-card list-card">
+                    <header class="list-header">
+                        <h3>Top {ensembleCount} Approved Ideas</h3>
+                    </header>
+                    
+                    <div class="slds-card__body slds-card__body_inner">
+                        <template if:true={ensembles.data}>
+                            <template for:each={formattedEnsembles} for:item="ensemble">
+                                <!-- Status styling is now handled by the tileClass getter -->
+                                <div key={ensemble.Id} class={ensemble.tileClass}>
+                                    <div class="slds-media slds-media_center ensemble-item">
+                                        <div class="slds-media__figure slds-m-right_medium">
+                                            <div class="rank-circle">{ensemble.rank}</div>
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <h4 class="slds-text-heading_small slds-m-bottom_xx-small">{ensemble.Name}</h4>
+                                            <p class="instruments-detail">{ensemble.Instruments__c}</p>
+                                        </div>
+                                        <div class="slds-media__figure slds-media__figure_reverse status-container">
+                                            <span class="status-badge approved">Approved</span>
+                                            <p class="slds-text-body_x-small slds-text-color_weak slds-m-top_xx-small">Since: {ensemble.formattedDate}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </template>
+
+                        <template if:true={ensembles.error}>
+                            <p class="slds-text-color_error slds-p-around_medium">Error loading data. Check Apex class access or object permissions.</p>
+                        </template>
+                        
+                        <template if:false={ensembles.data}>
+                            <div class="slds-is-relative slds-p-vertical_medium">
+                                <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</template>
