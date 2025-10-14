@@ -6,7 +6,8 @@ const href = "https://www.google.com/url?q=https%3A%2F%2Fwww.linkedin.com%2Fin%2
 
 function App() {
 	return (
-		<div className="App">
+        <div className="App">
+            <script type="text/javascript" async src="//cdn.evgnet.com/beacon/partneroffpremus/jycsandbox/scripts/evergage.min.js"></script>
 			<header className="App-header">
 				<LinkedInLink href={href} />
 			</header>
