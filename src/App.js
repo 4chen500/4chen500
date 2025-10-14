@@ -11,7 +11,8 @@ function App() {
 				<LinkedInLink href={href} />
 			</header>
 			<WebVitalsDisplay />
-			<RepoLink />
+            <RepoLink />
+            <div id="my_content_zone" />
 		</div>
 	);
 }
