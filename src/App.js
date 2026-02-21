@@ -32,29 +32,6 @@ function App() {
             <div id="my_content_zone" />
             <WebVitalsDisplay />
             <RepoLink />
-            {/* --- START: Email Input and Submit Form --- */}
-            <div id="submit_form">
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="emailInput" style={{ display: 'block', marginBottom: '8px' }}>
-                        Enter your email:
-                    </label>
-                    <input
-                    type="email"
-                    id="emailInput"
-                    value={email} // Controlled component: input value is tied to state
-                    onChange={handleEmailChange} // Update state on every change
-                    placeholder="your.email@example.com"
-                    required // Makes the field mandatory for HTML5 validation
-                />
-                        <button
-                        type="submit"
-                    >
-                            Subscribe
-                    </button>
-                </form>
-                {email && <p style={{ marginTop: '15px', fontSize: '0.9em', color: '#666' }}>Current input: {email}</p>}
-            </div>
-            {/* --- END: Email Input and Submit Form --- */}
         </div>
     );
 }
